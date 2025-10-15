@@ -24,16 +24,16 @@ function RouteComponent() {
   }, [menuParam, setMenu]);
 
   const renderContent = () => {
-    const normalizedMenu = menuParam.toLowerCase();
+    const menu = menuParam.toLowerCase();
 
-    switch (normalizedMenu) {
+    switch (menu) {
       case "users":
         return <UserTab />;
       case "home":
         return <HomeTab />;
-      case "time":
+      case "history":
         return <HistoryTab />;
-      case "money":
+      case "inventory":
         return <InventoryTab />;
       case "chart":
         return <ChartTab />;
@@ -48,9 +48,5 @@ function RouteComponent() {
     }
   };
 
-  return (
-    <div className="bg-gray-50 flex justify-center items-center h-full p-6">
-      {renderContent()}
-    </div>
-  );
+  return <div className="bg-gray-50   pt-6 px-6 h-full">{renderContent()}</div>;
 }

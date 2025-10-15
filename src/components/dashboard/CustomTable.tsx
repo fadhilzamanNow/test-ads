@@ -73,9 +73,9 @@ export default function CustomTable({
   return (
     <Table>
       <TableHeader>
-        <TableRow className="bg-[#FAFAFA] flex rounded-[8px] shadow-none ">
+        <TableRow className="bg-[#FAFAFA] flex rounded-[8px] shadow-none h-8 ">
           <TableHead
-            className="flex items-center gap-1 min-w-93 cursor-pointer hover:bg-gray-200 hover:rounded-l-[8px] transition-all "
+            className="flex items-center gap-1 min-w-93 cursor-pointer hover:bg-gray-200 hover:rounded-l-[8px] transition-all h-full "
             onClick={() => handleSort("id")}
           >
             <span className="leading-none text-[#686868]"># ID</span>
@@ -101,7 +101,7 @@ export default function CustomTable({
             </div>
           </TableHead>
           <TableHead
-            className="flex items-center gap-1 min-w-93 cursor-pointer hover:bg-gray-200  transition-all"
+            className="flex items-center gap-1 min-w-93 cursor-pointer hover:bg-gray-200  transition-all h-full"
             onClick={() => handleSort("username")}
           >
             <span className="leading-none text-[#686868]">Username</span>
@@ -127,7 +127,7 @@ export default function CustomTable({
             </div>
           </TableHead>
           <TableHead
-            className="flex items-center gap-1 min-w-93 cursor-pointer hover:bg-gray-200  transition-all"
+            className="flex items-center gap-1 min-w-93 cursor-pointer hover:bg-gray-200  transition-all h-full"
             onClick={() => handleSort("name")}
           >
             <span className="leading-none text-[#686868]">Name</span>
@@ -153,7 +153,7 @@ export default function CustomTable({
             </div>
           </TableHead>
           <TableHead
-            className="flex items-center gap-1 min-w-93 cursor-pointer hover:bg-gray-200  transition-all"
+            className="flex items-center gap-1 min-w-93 cursor-pointer hover:bg-gray-200  transition-all h-full"
             onClick={() => handleSort("phoneNumber")}
           >
             <span className="leading-none text-[#686868]">
@@ -185,7 +185,7 @@ export default function CustomTable({
       </TableHeader>
       <TableBody>
         {sortedData?.map((user: UserType) => (
-          <TableRow key={user.id} className="flex">
+          <TableRow key={user.id} className="flex max-h-12">
             <TableCell className="w-93 flex items-center text-[#686868]">
               #{user.id.toUpperCase()}
             </TableCell>

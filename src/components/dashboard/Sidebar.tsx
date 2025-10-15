@@ -21,11 +21,11 @@ const listMenu: ListMenu[] = [
   },
   {
     icon: <BiSolidAlarm size={20} />,
-    name: "Time",
+    name: "History",
   },
   {
     icon: <RiMoneyDollarCircleFill size={20} />,
-    name: "Money",
+    name: "Inventory",
   },
   {
     icon: <IoStatsChart size={20} />,
@@ -35,7 +35,7 @@ const listMenu: ListMenu[] = [
 
 export default function Sidebar() {
   return (
-    <aside className="flex flex-col border-r border-r-[#F2F2F2] h-screen">
+    <aside className="hidden md:flex flex-col border-r border-r-[#F2F2F2] h-screen ">
       <div className="size-15 p-4 flex justify-center items-center border-b border-b-[#F2F2F2] ">
         <img src={icon} />
       </div>

@@ -109,7 +109,7 @@ export default function UserTab() {
   }
 
   return (
-    <main className="h-full w-full bg-white flex flex-col gap-6 py-8.5 px-13">
+    <main className="w-full bg-white flex flex-col gap-6 py-8.5 px-13">
       <div className="flex items-center justify-between  ">
         <div className="flex gap-2 items-center">
           <IoIosPaper className="text-[#3739EC]" size={20} />
@@ -127,7 +127,7 @@ export default function UserTab() {
           <BsThreeDots />
         </Button>
       </div>
-      <div className="flex flex-col md:flex-row gap-4 md:gap-0 items-stretch md:items-center justify-between md:h-10">
+      <div className="flex w-full  items-center justify-between h-10">
         <Select>
           <SelectTrigger className="min-w-46.5">
             <SelectValue placeholder="Filter" />
@@ -138,7 +138,7 @@ export default function UserTab() {
             </SelectGroup>
           </SelectContent>
         </Select>
-        <div className="flex gap-2 items-center flex-1 md:flex-none">
+        <div className="flex gap-2 items-center ">
           <InputGroup className="max-h-47">
             <InputGroupAddon align={"inline-start"}>
               <Search strokeWidth={2} className="text-[#0C0C0C]" />
@@ -154,15 +154,11 @@ export default function UserTab() {
           </Button>
         </div>
       </div>
-      <div className="overflow-x-auto -mx-4 md:mx-0">
-        <div className="inline-block min-w-full align-middle">
-          <CustomTable
-            data={data}
-            handleEdit={handleEdit}
-            handleDelete={handleDelete}
-          />
-        </div>
-      </div>
+      <CustomTable
+        data={data}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
+      />
       <CustomPagination
         page={page}
         totalPage={totalPage}

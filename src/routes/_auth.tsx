@@ -14,7 +14,7 @@ export const Route = createFileRoute("/_auth")({
 
 function RouteComponent() {
   return (
-    <div className="h-screen flex flex-col md:flex-row  p-4 gap-4">
+    <div className="h-screen flex flex-col md:flex-row  p-4 gap-4 bg-white">
       <div className="w-full md:w-1/2 p-5 flex flex-col justify-between h-full">
         <div className="flex gap-2 items-center ">
           <img src={icon} className="w-8 h-9" />

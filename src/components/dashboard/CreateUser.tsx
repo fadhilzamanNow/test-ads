@@ -65,28 +65,34 @@ export default function CreateUser({ open, onClose }: CreateUserProps) {
                 <Label className="">Username</Label>
                 <Input {...register("username")} />
                 {errors.username && (
-                  <p className="text-red-500">{errors.username.message}</p>
+                  <p className="text-red-500 text-xs">
+                    {errors.username.message}
+                  </p>
                 )}
               </FieldSet>
               <FieldSet className="gap-2 flex flex-col">
                 <Label className="">Name</Label>
                 <Input {...register("name")} />
                 {errors.name && (
-                  <p className="text-red-500">{errors.name.message}</p>
+                  <p className="text-red-500 text-xs">{errors.name.message}</p>
                 )}
               </FieldSet>
               <FieldSet className="gap-2 flex flex-col">
                 <Label className="">Telephone Number</Label>
                 <Input {...register("phoneNumber")} />
                 {errors.phoneNumber && (
-                  <p className="text-red-500">{errors.phoneNumber.message}</p>
+                  <p className="text-red-500 text-xs">
+                    {errors.phoneNumber.message}
+                  </p>
                 )}
               </FieldSet>
               <FieldSet className="gap-2 flex flex-col">
                 <Label className="">Password</Label>
                 <Input {...register("password")} />
                 {errors.password && (
-                  <p className="text-red-500">{errors.password.message}</p>
+                  <p className="text-red-500 text-xs">
+                    {errors.password.message}
+                  </p>
                 )}
               </FieldSet>
               <Button

@@ -67,7 +67,7 @@ function RouteComponent() {
       <FieldSet className="flex flex-col gap-6 w-106">
         <FieldGroup className="flex flex-col gap-2">
           <Label className="text-xs">Username</Label>
-          <Input placeholder="Username" {...register("username")} />
+          <Input {...register("username")} />
           {errors.username && (
             <p className="text-red-500 text-xs">{errors.username.message}</p>
           )}
@@ -76,7 +76,6 @@ function RouteComponent() {
           <Label className="text-xs">Password</Label>
           <InputGroup>
             <InputGroupInput
-              placeholder="Password"
               {...register("password")}
               type={isPassOpen ? "text" : "password"}
             />

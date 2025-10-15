@@ -17,7 +17,7 @@ function RouteComponent() {
   return (
     <div className="flex">
       <Sidebar />
-      <div className="flex flex-col flex-1 ">
+      <div className="flex flex-col flex-1  ">
         <Navbar />
         <Outlet />
       </div>

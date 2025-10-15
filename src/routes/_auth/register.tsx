@@ -100,21 +100,21 @@ function RouteComponent() {
       <FieldSet className="w-106 flex flex-col gap-6">
         <FieldGroup className="gap-2">
           <Label className="text-xs">Name</Label>
-          <Input placeholder="Nama" {...registerField("name")} className="" />
+          <Input {...registerField("name")} className="" />
           {errors.name && (
             <p className="text-red-500 text-xs">{errors.name.message}</p>
           )}
         </FieldGroup>
         <FieldGroup className="gap-2">
           <Label className="text-xs">Username</Label>
-          <Input placeholder="Username" {...registerField("username")} />
+          <Input {...registerField("username")} />
           {errors.username && (
             <p className="text-red-500 text-xs">{errors.username.message}</p>
           )}
         </FieldGroup>
         <FieldGroup className="gap-2">
           <Label className="text-xs">Phone Number</Label>
-          <Input placeholder="Phone Number" {...registerField("phoneNumber")} />
+          <Input {...registerField("phoneNumber")} />
           {errors.phoneNumber && (
             <p className="text-red-500 text-xs">{errors.phoneNumber.message}</p>
           )}
@@ -123,7 +123,6 @@ function RouteComponent() {
           <Label className="text-xs">Password</Label>
           <InputGroup>
             <InputGroupInput
-              placeholder="Password"
               {...registerField("password")}
               type={isPassOpen ? "text" : "password"}
             />
@@ -143,7 +142,6 @@ function RouteComponent() {
           <Label className="text-xs">Confirm Password</Label>
           <InputGroup>
             <InputGroupInput
-              placeholder="Password"
               {...registerField("confirm_password")}
               type={isConfOpen ? "text" : "password"}
             />
