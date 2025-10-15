@@ -43,7 +43,7 @@ export default function Navbar() {
         </Button>
         <InputGroup className="flex-1 max-w-[350px]">
           <InputGroupAddon align={"inline-start"}>
-            <Search strokeWidth={0.75} />
+            <Search strokeWidth={2} className="text-[#0C0C0C]" />
           </InputGroupAddon>
           <InputGroupInput placeholder="Search something" />
         </InputGroup>
@@ -52,7 +52,7 @@ export default function Navbar() {
             <Button className="min-size-[35px] " variant={"outline"} asChild>
               <div className="flex justify-center items-center gap-2">
                 <Avatar className="size-5">
-                  <AvatarFallback className="bg-black text-white text-[10px] ">
+                  <AvatarFallback className="bg-[#536AFF]/20 text-[#3739EC] text-[10px] ">
                     {user?.name.slice(0, 2)}
                   </AvatarFallback>
                 </Avatar>

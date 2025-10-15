@@ -26,6 +26,8 @@ import CustomTable from "./CustomTable";
 import CreateUser from "./CreateUser";
 import EditUser from "./EditUser";
 import DeleteUser from "./DeleteUser";
+import CustomOverlay from "../overlay/CustomOverlay";
+import { Search } from "lucide-react";
 
 export default function UserTab() {
   const [page, setPage] = useState(1);
@@ -76,7 +78,7 @@ export default function UserTab() {
   if (isLoading) {
     return (
       <main className="h-full w-full bg-white flex items-center justify-center">
-        <p>Loading users...</p>
+        <CustomOverlay />
       </main>
     );
   }
@@ -119,7 +121,7 @@ export default function UserTab() {
         <div className="flex gap-2 items-center flex-1 md:flex-none">
           <InputGroup className="max-h-47">
             <InputGroupAddon align={"inline-start"}>
-              <FaSearch />
+              <Search strokeWidth={2} className="text-[#0C0C0C]" />
             </InputGroupAddon>
             <InputGroupInput placeholder="Search user" />
           </InputGroup>

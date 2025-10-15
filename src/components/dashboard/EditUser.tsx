@@ -17,6 +17,7 @@ import { useUserById } from "@/hooks/useUserById";
 import { useUpdateUser } from "@/hooks/useUpdateUser";
 import { toast } from "sonner";
 import { useEffect } from "react";
+import { Skeleton } from "../ui/skeleton";
 
 interface EditModalProps {
   open: boolean;
@@ -24,9 +25,11 @@ interface EditModalProps {
   userId: string | null;
 }
 
-type editUserSchema = Partial<
-  Omit<z.infer<typeof registerSchema>, "confirm_password">
->;
+const editUserSchema = registerSchema.omit({ confirm_password: true }).extend({
+  password: z.string().min(8).optional().or(z.literal("")),
+});
+
+type editUserSchema = z.infer<typeof editUserSchema>;
 
 export default function EditUser({ open, onClose, userId }: EditModalProps) {
   const { data: userData, isLoading } = useUserById(
@@ -41,9 +44,7 @@ export default function EditUser({ open, onClose, userId }: EditModalProps) {
     formState: { errors },
     reset,
   } = useForm<editUserSchema>({
-    resolver: zodResolver(
-      registerSchema.omit({ confirm_password: true }).partial(),
-    ),
+    resolver: zodResolver(editUserSchema),
     mode: "onChange",
   });
 
@@ -91,7 +92,12 @@ export default function EditUser({ open, onClose, userId }: EditModalProps) {
           </DialogTitle>
           <div className="flex flex-col gap-6 mt-6">
             {isLoading ? (
-              <p>Loading user data...</p>
+              <div className="space-y-2">
+                <Skeleton className="rounded-md  h-5 w-full bg-[#818898]/20" />
+                <Skeleton className="rounded-md  h-5 w-4/5 bg-[#818898]/20" />
+                <Skeleton className="rounded-md  h-5 w-3/5 bg-[#818898]/20" />
+                <Skeleton className="rounded-md  h-5 w-2/5 bg-[#818898]/20" />
+              </div>
             ) : (
               <form
                 className="flex flex-col gap-6"
@@ -101,28 +107,36 @@ export default function EditUser({ open, onClose, userId }: EditModalProps) {
                   <Label className="">Username</Label>
                   <Input {...register("username")} />
                   {errors.username && (
-                    <p className="text-red-500">{errors.username.message}</p>
+                    <p className="text-red-500 text-xs">
+                      {errors.username.message}
+                    </p>
                   )}
                 </FieldSet>
                 <FieldSet className="gap-2 flex flex-col">
                   <Label className="">Name</Label>
                   <Input {...register("name")} className="bg-white" />
                   {errors.name && (
-                    <p className="text-red-500">{errors.name.message}</p>
+                    <p className="text-red-500 text-xs">
+                      {errors.name.message}
+                    </p>
                   )}
                 </FieldSet>
                 <FieldSet className="gap-2 flex flex-col">
                   <Label className="">Telephone Number</Label>
                   <Input {...register("phoneNumber")} />
                   {errors.phoneNumber && (
-                    <p className="text-red-500">{errors.phoneNumber.message}</p>
+                    <p className="text-red-500 text-xs">
+                      {errors.phoneNumber.message}
+                    </p>
                   )}
                 </FieldSet>
                 <FieldSet className="gap-2 flex flex-col">
                   <Label className="">Password</Label>
                   <Input {...register("password")} />
                   {errors.password && (
-                    <p className="text-red-500">{errors.password.message}</p>
+                    <p className="text-red-500 text-xs">
+                      {errors.password.message}
+                    </p>
                   )}
                 </FieldSet>
                 <Button

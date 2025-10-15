@@ -6,11 +6,11 @@ import { AxiosError } from "axios";
 export const loginSchema = z.object({
   username: z
     .string()
-    .min(6, { message: "Minimum 6 karakter" })
-    .max(100, { message: "Maksimum 100 karakter" }),
+    .min(1, { message: "Username masih kosong" })
+    .max(100, { message: "Maksimal 100 karakter" }),
   password: z
     .string()
-    .min(8, { message: "Minimum 8 karakter" })
+    .min(8, { message: "Password masih kosong" })
     .max(100, { message: "Maksimum 100 karakter" }),
 });
 

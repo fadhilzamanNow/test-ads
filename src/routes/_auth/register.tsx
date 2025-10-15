@@ -25,21 +25,21 @@ export const registerSchema = z
   .object({
     name: z
       .string()
-      .min(8, { message: "Minimum 8 karakter" })
-      .max(100, { message: "Maksimum 100 karakter" }),
+      .min(1, { message: "Name masih kosong" })
+      .max(100, { message: "Maksimum name 100 karakter" }),
     username: z
       .string()
-      .min(6, { message: "Minimum 6 karakter" })
-      .max(100, { message: "Maksimum 100 karakter" }),
+      .min(1, { message: "Username masih kosong" })
+      .max(100, { message: "Maksimum username 100 karakter" }),
     password: z
       .string()
-      .min(8, { message: "Minimum 8 karakter" })
-      .max(100, { message: "Maksimum 100 karakter" }),
+      .min(1, { message: "Password masih kosong" })
+      .max(100, { message: "Maksimum password berisi 100 karakter" }),
     confirm_password: z.string(),
     phoneNumber: z
       .string()
-      .min(10, { message: "Masukkan nomor telepon yang valid" })
-      .max(20, { message: "Masukkan nomro telepon yang valid" }),
+      .min(1, { message: "Nomor telefon masih kosong" })
+      .max(20, { message: "Masukkan nomor telepon yang valid" }),
   })
   .refine((data) => data.password === data.confirm_password, {
     message: "Password tidak cocok",
