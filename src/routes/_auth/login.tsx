@@ -66,14 +66,14 @@ function RouteComponent() {
       </div>
       <FieldSet className="flex flex-col gap-6 w-106">
         <FieldGroup className="flex flex-col gap-2">
-          <Label>Username</Label>
+          <Label className="text-xs">Username</Label>
           <Input placeholder="Username" {...register("username")} />
           {errors.username && (
             <p className="text-red-500 text-xs">{errors.username.message}</p>
           )}
         </FieldGroup>
         <FieldGroup className="flex flex-col gap-2">
-          <Label>Password</Label>
+          <Label className="text-xs">Password</Label>
           <InputGroup>
             <InputGroupInput
               placeholder="Password"
@@ -93,12 +93,21 @@ function RouteComponent() {
           )}
         </FieldGroup>
       </FieldSet>
-      <div className="flex justify-between items-center text-sm w-106">
+      <div className="flex justify-between items-center  w-106 ">
         <div className="gap-1.5 flex items-center">
           <Checkbox id="remember" />
-          <Label htmlFor="remember">Remember me</Label>
+          <Label htmlFor="remember" className="text-sm">
+            Remember me
+          </Label>
         </div>
-        <span className="text-[#3739EC]">Forgot Your Password?</span>
+        <span
+          className="text-[#3739EC] text-sm cursor-pointer"
+          onClick={() =>
+            toast.info("Feature not implemented yet. Coming soon!")
+          }
+        >
+          Forgot Your Password?
+        </span>
       </div>
       <Button
         className="bg-[#3739EC] hover:bg-[#3739EC]/80 w-106"

@@ -10,7 +10,7 @@ export const loginSchema = z.object({
     .max(100, { message: "Maksimal 100 karakter" }),
   password: z
     .string()
-    .min(8, { message: "Password masih kosong" })
+    .min(1, { message: "Password masih kosong" })
     .max(100, { message: "Maksimum 100 karakter" }),
 });
 
