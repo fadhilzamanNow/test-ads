@@ -7,19 +7,88 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group";
 import { Label } from "@/components/ui/label";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
+import { useRegister } from "@/hooks/useRegister";
 
 export const Route = createFileRoute("/_auth/register")({
   component: RouteComponent,
 });
 
+import z from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
+
+export const registerSchema = z
+  .object({
+    name: z
+      .string()
+      .min(8, { message: "Minimum 8 karakter" })
+      .max(100, { message: "Maksimum 100 karakter" }),
+    username: z
+      .string()
+      .min(6, { message: "Minimum 6 karakter" })
+      .max(100, { message: "Maksimum 100 karakter" }),
+    password: z
+      .string()
+      .min(8, { message: "Minimum 8 karakter" })
+      .max(100, { message: "Maksimum 100 karakter" }),
+    confirm_password: z.string(),
+    phoneNumber: z
+      .string()
+      .min(10, { message: "Masukkan nomor telepon yang valid" })
+      .max(20, { message: "Masukkan nomro telepon yang valid" }),
+  })
+  .refine((data) => data.password === data.confirm_password, {
+    message: "Password tidak cocok",
+    path: ["confirm_password"],
+  });
+
 function RouteComponent() {
   const [isPassOpen, setIsPassOpen] = useState(false);
   const [isConfOpen, setIsConfOpen] = useState(false);
+
+  const { mutate: register, isPending } = useRegister();
+  const navigate = useNavigate();
+
+  const {
+    register: registerField,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<z.infer<typeof registerSchema>>({
+    resolver: zodResolver(registerSchema),
+    mode: "onChange",
+  });
+
+  const onSubmit = (data: z.infer<typeof registerSchema>) => {
+    register(
+      {
+        name: data.name,
+        username: data.username,
+        phoneNumber: data.phoneNumber,
+        password: data.password,
+      },
+      {
+        onSuccess: (res) => {
+          toast.success(res.message);
+          reset();
+          navigate({ to: "/login" });
+        },
+        onError: (error) => {
+          toast.error(error.message);
+        },
+      },
+    );
+  };
+
   return (
-    <form className="flex flex-col items-center gap-6">
+    <form
+      className="flex flex-col items-center gap-6"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <div className="flex flex-col items-center gap-6">
         <h1 className="font-semibold text-[40px] leading-6 -tracking-[2px]">
           Create an Account
@@ -31,16 +100,33 @@ function RouteComponent() {
       <FieldSet className="w-106 flex flex-col gap-6">
         <FieldGroup className="gap-2">
           <Label>Name</Label>
-          <Input placeholder="Nama" />
+          <Input placeholder="Nama" {...registerField("name")} className="" />
+          {errors.name && (
+            <p className="text-red-500 text-xs">{errors.name.message}</p>
+          )}
         </FieldGroup>
         <FieldGroup className="gap-2">
           <Label>Username</Label>
-          <Input placeholder="Username" />
+          <Input placeholder="Username" {...registerField("username")} />
+          {errors.username && (
+            <p className="text-red-500 text-xs">{errors.username.message}</p>
+          )}
+        </FieldGroup>
+        <FieldGroup className="gap-2">
+          <Label>Phone Number</Label>
+          <Input placeholder="Phone Number" {...registerField("phoneNumber")} />
+          {errors.phoneNumber && (
+            <p className="text-red-500 text-xs">{errors.phoneNumber.message}</p>
+          )}
         </FieldGroup>
         <FieldGroup className="gap-2">
           <Label>Password</Label>
           <InputGroup>
-            <InputGroupInput placeholder="Password" />
+            <InputGroupInput
+              placeholder="Password"
+              {...registerField("password")}
+              type={isPassOpen ? "text" : "password"}
+            />
             <InputGroupAddon
               align={"inline-end"}
               className="cursor-pointer"
@@ -49,11 +135,18 @@ function RouteComponent() {
               {isPassOpen ? <EyeOff /> : <Eye />}
             </InputGroupAddon>
           </InputGroup>
+          {errors.password && (
+            <p className="text-red-500 text-xs">{errors.password.message}</p>
+          )}
         </FieldGroup>
         <FieldGroup className="gap-2">
           <Label>Password</Label>
           <InputGroup>
-            <InputGroupInput placeholder="Password" />
+            <InputGroupInput
+              placeholder="Password"
+              {...registerField("confirm_password")}
+              type={isConfOpen ? "text" : "password"}
+            />
             <InputGroupAddon
               align={"inline-end"}
               className="cursor-pointer"
@@ -62,10 +155,19 @@ function RouteComponent() {
               {isConfOpen ? <EyeOff /> : <Eye />}
             </InputGroupAddon>
           </InputGroup>
+          {errors.confirm_password && (
+            <p className="text-red-500 text-xs">
+              {errors.confirm_password.message}
+            </p>
+          )}
         </FieldGroup>
       </FieldSet>
-      <Button className="w-106 bg-[#3739EC] hover:bg-[#3739EC]/80">
-        Register
+      <Button
+        className="w-106 bg-[#3739EC] hover:bg-[#3739EC]/80"
+        type="submit"
+        disabled={isPending}
+      >
+        {isPending ? "Loading..." : "Register"}
       </Button>
       <div className="border-1 w-106 h-0 relative border-[#81818333] text-[#959595] text-sm">
         <div className="absolute bg-white px-4 top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 ">
