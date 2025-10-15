@@ -20,20 +20,12 @@ import {
 } from "../ui/input-group";
 import { useUsers } from "@/hooks/useUsers";
 import { useMemo, useState } from "react";
-import { Input } from "../ui/input";
 import { toast } from "sonner";
 import CustomPagination from "./CustomPagination";
 import CustomTable from "./CustomTable";
 import CreateUser from "./CreateUser";
 import EditUser from "./EditUser";
 import DeleteUser from "./DeleteUser";
-
-interface UserType {
-  id: string;
-  name: string;
-  username: string;
-  phoneNumber: string;
-}
 
 export default function UserTab() {
   const [page, setPage] = useState(1);
@@ -42,7 +34,7 @@ export default function UserTab() {
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  const [selectedUser, setSelectedUser] = useState<UserType>();
+  const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
   const lowerEntry = useMemo(() => {
     return page * 10 - 10 + 1;
   }, [page]);
@@ -68,10 +60,12 @@ export default function UserTab() {
   };
 
   const handleEdit = (id: string) => {
+    setSelectedUserId(id);
     setIsEditOpen(true);
   };
 
   const handleDelete = (id: string) => {
+    setSelectedUserId(id);
     setIsDeleteOpen(true);
   };
 
@@ -157,10 +151,12 @@ export default function UserTab() {
       <EditUser
         open={isEditOpen}
         onClose={(state: boolean) => setIsEditOpen(state)}
+        userId={selectedUserId}
       />
       <DeleteUser
         open={isDeleteOpen}
         onClose={(state: boolean) => setIsDeleteOpen(state)}
+        userId={selectedUserId as string}
       />
     </main>
   );

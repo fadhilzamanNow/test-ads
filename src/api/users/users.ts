@@ -44,7 +44,7 @@ export async function updateUser(
   data: Partial<Omit<z.infer<typeof registerSchema>, "confirm_password">>,
 ) {
   try {
-    const response = await baseApi.put(`/user/${id}`, data);
+    const response = await baseApi.patch(`/user/${id}`, data);
     return response.data;
   } catch (err) {
     if (err instanceof AxiosError) {

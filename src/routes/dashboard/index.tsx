@@ -4,7 +4,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { getAllUsers } from "@/api/users/users";
 
 export const Route = createFileRoute("/dashboard/")({
-  loader: async ({ context }) => {
+  loader: async () => {
     const users = await getAllUsers(1, 10);
     return { users };
   },

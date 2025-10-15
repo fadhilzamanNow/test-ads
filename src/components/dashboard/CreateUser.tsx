@@ -1,7 +1,6 @@
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
@@ -14,16 +13,21 @@ import { useForm } from "react-hook-form";
 import { registerSchema } from "@/routes/_auth/register";
 import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
+import { useCreateUser } from "@/hooks/useCreateUser";
+import { toast } from "sonner";
 interface CreateUserProps {
   open: boolean;
   onClose: (state: boolean) => void;
 }
 
 export default function CreateUser({ open, onClose }: CreateUserProps) {
+  const { mutate: createUser, isPending } = useCreateUser();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<Omit<z.infer<typeof registerSchema>, "confirm_password">>({
     resolver: zodResolver(registerSchema.omit({ confirm_password: true })),
     mode: "onChange",
@@ -32,7 +36,16 @@ export default function CreateUser({ open, onClose }: CreateUserProps) {
   const onSubmit = (
     data: Omit<z.infer<typeof registerSchema>, "confirm_password">,
   ) => {
-    console.log(data);
+    createUser(data, {
+      onSuccess: (res) => {
+        toast.success(res.message || "User created successfully");
+        reset();
+        onClose(false);
+      },
+      onError: (error) => {
+        toast.error(error.message || "Failed to create user");
+      },
+    });
   };
 
   return (
@@ -43,7 +56,7 @@ export default function CreateUser({ open, onClose }: CreateUserProps) {
             <IoIosPaper className="text-[#3739EC]" size={20} />
             <span>Create User</span>
           </DialogTitle>
-          <DialogDescription className="flex flex-col gap-6 mt-6">
+          <div className="flex flex-col gap-6 mt-6">
             <form
               className="flex flex-col gap-6"
               onSubmit={handleSubmit(onSubmit)}
@@ -76,11 +89,15 @@ export default function CreateUser({ open, onClose }: CreateUserProps) {
                   <p className="text-red-500">{errors.password.message}</p>
                 )}
               </FieldSet>
-              <Button type="submit" className="w-39 h-[41px] mx-auto">
-                Create
+              <Button
+                type="submit"
+                className="w-39 h-[41px] mx-auto"
+                disabled={isPending}
+              >
+                {isPending ? "Creating..." : "Create"}
               </Button>
             </form>
-          </DialogDescription>
+          </div>
         </DialogHeader>
       </DialogContent>
     </Dialog>
