@@ -84,7 +84,7 @@ export default function CustomTable({
             <TableCell className="w-93 flex items-center">
               {user.phoneNumber || "-"}
             </TableCell>
-            <TableCell className="flex-1 flex items-center justify-end w-max">
+            <TableCell className="flex-1 flex  justify-end w-max">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant={"ghost"}>

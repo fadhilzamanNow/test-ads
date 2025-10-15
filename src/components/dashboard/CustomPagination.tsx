@@ -101,7 +101,7 @@ export default function CustomPagination({
         </PaginationContent>
       </Pagination>
       <div className="flex items-center gap-2">
-        <span className="w-max text-[#818898]">Go to page</span>
+        <span className="w-max text-[#818898] text-sm">Go to page</span>
         <Input
           className="w-12"
           onChange={(e) => setSearchPage(parseInt(e.target.value))}
@@ -111,7 +111,7 @@ export default function CustomPagination({
           onClick={handleChangePage}
           className="text-[#19191C] w-max flex items-center justify-center text-sm"
         >
-          Go
+          <span className="text-sm">Go</span>
           <ChevronRight />
         </Button>
       </div>

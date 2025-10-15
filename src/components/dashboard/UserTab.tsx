@@ -102,7 +102,7 @@ export default function UserTab() {
           <BsThreeDots />
         </Button>
       </div>
-      <div className="flex items-center justify-between h-10">
+      <div className="flex flex-col md:flex-row gap-4 md:gap-0 items-stretch md:items-center justify-between md:h-10">
         <Select>
           <SelectTrigger className="min-w-46.5">
             <SelectValue placeholder="Filter" />
@@ -116,7 +116,7 @@ export default function UserTab() {
             </SelectGroup>
           </SelectContent>
         </Select>
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-2 items-center flex-1 md:flex-none">
           <InputGroup className="max-h-47">
             <InputGroupAddon align={"inline-start"}>
               <FaSearch />
@@ -129,11 +129,15 @@ export default function UserTab() {
           </Button>
         </div>
       </div>
-      <CustomTable
-        data={data}
-        handleEdit={handleEdit}
-        handleDelete={handleDelete}
-      />
+      <div className="overflow-x-auto -mx-4 md:mx-0">
+        <div className="inline-block min-w-full align-middle">
+          <CustomTable
+            data={data}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
+          />
+        </div>
+      </div>
       <CustomPagination
         page={page}
         totalPage={totalPage}

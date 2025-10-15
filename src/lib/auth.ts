@@ -72,6 +72,7 @@ export function setAuthToken(token: string): void {
 }
 
 export function removeAuthToken(): void {
+  useStore.getState().clearUser();
   localStorage.removeItem("authToken");
 }
 
