@@ -21,11 +21,11 @@ import {
 import { useUsers } from "@/hooks/useUsers";
 import { useMemo, useState } from "react";
 import { toast } from "sonner";
-import CustomPagination from "./CustomPagination";
-import CustomTable from "./CustomTable";
-import CreateUser from "./CreateUser";
-import EditUser from "./EditUser";
-import DeleteUser from "./DeleteUser";
+import CustomPagination from "../dashboard/CustomPagination";
+import CustomTable from "../dashboard/CustomTable";
+import CreateUser from "../dashboard/CreateUser";
+import EditUser from "../dashboard/EditUser";
+import DeleteUser from "../dashboard/DeleteUser";
 import CustomOverlay from "../overlay/CustomOverlay";
 import { Search } from "lucide-react";
 
