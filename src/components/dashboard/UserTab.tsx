@@ -37,6 +37,7 @@ export default function UserTab() {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
+
   const lowerEntry = useMemo(() => {
     return page * 10 - 10 + 1;
   }, [page]);
@@ -75,6 +76,22 @@ export default function UserTab() {
     setIsCreateOpen(true);
   };
 
+  const debounceSearch = (() => {
+    let timeoutId: any;
+    return (value: string) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        if (value.trim()) {
+          toast.info("This feature is not released yet. Coming soon!");
+        }
+      }, 500);
+    };
+  })();
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    debounceSearch(e.target.value);
+  };
+
   if (isLoading) {
     return (
       <main className="h-full w-full bg-white flex items-center justify-center">
@@ -100,7 +117,13 @@ export default function UserTab() {
             List User
           </span>
         </div>
-        <Button variant={"outline"} className="size-8">
+        <Button
+          variant={"outline"}
+          className="size-8"
+          onClick={() =>
+            toast.info("This feature haven't implemented yet. Coming soon")
+          }
+        >
           <BsThreeDots />
         </Button>
       </div>
@@ -111,10 +134,7 @@ export default function UserTab() {
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectLabel>Choose your filter</SelectLabel>
-              <SelectItem value="username">Username</SelectItem>
-              <SelectItem value="name">Name</SelectItem>
-              <SelectItem value="phone">Phone Number</SelectItem>
+              <SelectLabel>Coming soon</SelectLabel>
             </SelectGroup>
           </SelectContent>
         </Select>
@@ -123,7 +143,10 @@ export default function UserTab() {
             <InputGroupAddon align={"inline-start"}>
               <Search strokeWidth={2} className="text-[#0C0C0C]" />
             </InputGroupAddon>
-            <InputGroupInput placeholder="Search user" />
+            <InputGroupInput
+              placeholder="Search user"
+              onChange={handleSearchChange}
+            />
           </InputGroup>
           <Button className="w-39 px-4" onClick={() => handleCreate()}>
             <IoMdAdd />

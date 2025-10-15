@@ -100,21 +100,27 @@ export default function CustomPagination({
           </PaginationItem>
         </PaginationContent>
       </Pagination>
-      <div className="flex items-center gap-2">
+      <form
+        className="flex items-center gap-2"
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleChangePage();
+        }}
+      >
         <span className="w-max text-[#818898] text-sm">Go to page</span>
         <Input
           className="w-12"
           onChange={(e) => setSearchPage(parseInt(e.target.value))}
         />
         <Button
+          type="submit"
           variant={"ghost"}
-          onClick={handleChangePage}
           className="text-[#19191C] w-max flex items-center justify-center text-sm"
         >
           <span className="text-sm">Go</span>
           <ChevronRight />
         </Button>
-      </div>
+      </form>
     </div>
   );
 }
