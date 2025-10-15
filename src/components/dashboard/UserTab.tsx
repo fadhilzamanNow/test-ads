@@ -90,7 +90,7 @@ export default function UserTab() {
   }
 
   return (
-    <main className="h-full w-full bg-white flex flex-col gap-4 py-8.5 px-13">
+    <main className="h-full w-full bg-white flex flex-col gap-6 py-8.5 px-13">
       <div className="flex items-center justify-between  ">
         <div className="flex gap-2 items-center">
           <IoIosPaper className="text-[#3739EC]" size={20} />

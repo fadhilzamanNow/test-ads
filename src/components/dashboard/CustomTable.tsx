@@ -14,6 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { BsThreeDots } from "react-icons/bs";
+import { Button } from "../ui/button";
 
 interface UserType {
   id: string;
@@ -73,14 +74,22 @@ export default function CustomTable({
       <TableBody>
         {data?.datas?.map((user: UserType) => (
           <TableRow key={user.id} className="flex">
-            <TableCell className="w-93">{user.id}</TableCell>
-            <TableCell className="w-93">{user.username}</TableCell>
-            <TableCell className="w-93">{user.name}</TableCell>
-            <TableCell className="w-93">{user.phoneNumber || "-"}</TableCell>
-            <TableCell className="flex-1 flex justify-end w-max">
+            <TableCell className="w-93 flex items-center">{user.id}</TableCell>
+            <TableCell className="w-93 flex items-center">
+              {user.username}
+            </TableCell>
+            <TableCell className="w-93 flex items-center">
+              {user.name}
+            </TableCell>
+            <TableCell className="w-93 flex items-center">
+              {user.phoneNumber || "-"}
+            </TableCell>
+            <TableCell className="flex-1 flex items-center justify-end w-max">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <BsThreeDots />
+                  <Button variant={"ghost"}>
+                    <BsThreeDots />
+                  </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-30">
                   <DropdownMenuItem onClick={() => handleEdit(user.id)}>
