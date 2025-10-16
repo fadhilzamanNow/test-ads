@@ -1,73 +1,29 @@
-# React + TypeScript + Vite
+# Technical Test ADS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## You may go visit this drive to check the screenshot
+[SCREENSHOT TAMPILAN HALAMAN](https://drive.google.com/drive/folders/1aZEiA0KZkhIOt78lVq7c4OLOE_dUVzhc?usp=sharing)
 
-Currently, two official plugins are available:
+## Front End Stack
+- React
+- Vite
+- Tanstack Router
+- Tanstack Query
+- Zustand
+- Shadcn
+- TailwindCSS
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
+## To run this project, you may 
+### run directly to the deployed project on vercel
+- navigate to this link [https://fadhil-test-ads.vercel.app](https://fadhil-test-ads.vercel.app)
+- since the backend is still http, while the fronend is https. The browser block this mixed content, so you need to disabled this security
+- if you are on chrome, navigate to this link [chrome://settings/content/siteDetails?site=https%3A%2F%2Ffadhil-test-ads.vercel.app](chrome://settings/content/siteDetails?site=https%3A%2F%2Ffadhil-test-ads.vercel.app) and change the insecure content value into true
+- if you are on firefox, navigate to this link [about:config](about:config), and change the security.mixed_content.block_active_content value into false
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### run locally
+- Run Locally ( clone this repo )
+- navigate to the repo folder
+- run `npm install`
+- create .env folder and paste this `VITE_BACKEND_URL=http://93.127.185.148:8888/api/v1` then save
+- move to your terminal in the same directory and run `npm run dev` for (dev bundle) or `npm run build` with `npm run preview` for (build bundle)
+ 
