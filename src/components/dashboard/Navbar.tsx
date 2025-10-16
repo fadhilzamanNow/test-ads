@@ -1,7 +1,6 @@
 import {
   Bell,
   ChevronDown,
-  ChevronDownCircle,
   Command,
   LogOut,
   Search,

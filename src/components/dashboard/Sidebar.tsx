@@ -4,10 +4,12 @@ import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import { BiSolidAlarm } from "react-icons/bi";
 import { IoStatsChart } from "react-icons/io5";
 import SidebarItem from "./SidebarItem";
+import { BriefcaseBusiness, Settings, Trash2 } from "lucide-react";
 
 export interface ListMenu {
   icon: React.ReactNode;
   name: string;
+  separator?: boolean;
 }
 
 const listMenu: ListMenu[] = [
@@ -31,6 +33,20 @@ const listMenu: ListMenu[] = [
     icon: <IoStatsChart size={20} />,
     name: "Chart",
   },
+  {
+    icon: <BriefcaseBusiness size={20} />,
+    name: "Case",
+    separator: true,
+  },
+  {
+    icon: <Trash2 size={20} />,
+    name: "Trash",
+  },
+  {
+    icon: <Settings size={20} />,
+    name: "Setting",
+    separator: true,
+  },
 ];
 
 export default function Sidebar() {
@@ -41,7 +57,10 @@ export default function Sidebar() {
       </div>
       <ul className="flex-1 flex flex-col p-4 gap-4">
         {listMenu.map((v, i) => (
-          <SidebarItem item={v} key={i + 1} />
+          <div key={i + 1}>
+            {v.separator && <div className="border-t border-[#F2F2F2] my-2" />}
+            <SidebarItem item={v} />
+          </div>
         ))}
       </ul>
     </aside>

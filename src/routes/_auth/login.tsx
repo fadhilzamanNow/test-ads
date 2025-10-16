@@ -32,7 +32,6 @@ function RouteComponent() {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     mode: "onChange",
@@ -121,12 +120,22 @@ function RouteComponent() {
         </span>
       </div>
       <div className="flex gap-3 w-106">
-        <Button className="flex-1" variant={"outline"}>
-          <span className="inline-block size-4"></span>
+        <Button
+          className="flex-1"
+          variant={"outline"}
+          type="button"
+          onClick={() => toast.info("Not available yet")}
+        >
+          <span className="inline-block size-4 bg-[#D9D9D9]"></span>
           <span>Google</span>
         </Button>
-        <Button className="flex-1" variant="outline">
-          <span className="inline-block size-4"></span>
+        <Button
+          className="flex-1"
+          variant="outline"
+          type="button"
+          onClick={() => toast.info("Not available yet")}
+        >
+          <span className="inline-block size-4 bg-[#D9D9D9]"></span>
           <span>Apple</span>
         </Button>
       </div>

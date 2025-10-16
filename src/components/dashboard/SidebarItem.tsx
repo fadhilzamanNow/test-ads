@@ -9,7 +9,7 @@ interface SidebarItemProps {
   item: ListMenu;
 }
 export default function SidebarItem({ item }: SidebarItemProps) {
-  const { setMenu, menu } = useStore((state) => state);
+  const { menu } = useStore((state) => state);
   const queryClient = useQueryClient();
 
   useEffect(() => {

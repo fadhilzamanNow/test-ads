@@ -4,12 +4,14 @@ import { FaHome, FaUsers } from "react-icons/fa";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import { BiSolidAlarm } from "react-icons/bi";
 import { IoStatsChart } from "react-icons/io5";
+import { BriefcaseBusiness, Settings, Trash2 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useStore } from "@/store/store";
 
 interface ListMenu {
   icon: React.ReactNode;
   name: string;
+  separator?: boolean;
 }
 
 const listMenu: ListMenu[] = [
@@ -33,6 +35,20 @@ const listMenu: ListMenu[] = [
     icon: <IoStatsChart size={20} />,
     name: "Chart",
   },
+  {
+    icon: <BriefcaseBusiness size={20} />,
+    name: "Case",
+    separator: true,
+  },
+  {
+    icon: <Trash2 size={20} />,
+    name: "Trash",
+  },
+  {
+    icon: <Settings size={20} />,
+    name: "Setting",
+    separator: true,
+  },
 ];
 
 interface CustomSheetProps {
@@ -54,23 +70,27 @@ export default function CustomSheet({ open, onClose }: CustomSheetProps) {
           </div>
           <ul className="flex-1 flex flex-col p-4 gap-4">
             {listMenu.map((item, i) => (
-              <Link
-                key={i + 1}
-                to="/dashboard/$menu"
-                params={{ menu: item.name.toLowerCase() }}
-                onClick={() => onClose(false)}
-              >
-                <li
-                  className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                    menu === item.name
-                      ? "bg-[#536AFF0D] text-[#3739EC]"
-                      : "text-[#CCD2D6] hover:bg-[#536AFF0D] hover:text-[#3739EC]"
-                  }`}
+              <div key={i + 1}>
+                {item.separator && (
+                  <div className="border-t border-[#F2F2F2] my-2" />
+                )}
+                <Link
+                  to="/dashboard/$menu"
+                  params={{ menu: item.name.toLowerCase() }}
+                  onClick={() => onClose(false)}
                 >
-                  {item.icon}
-                  <span className="font-medium">{item.name}</span>
-                </li>
-              </Link>
+                  <li
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                      menu === item.name
+                        ? "bg-[#536AFF0D] text-[#3739EC]"
+                        : "text-[#CCD2D6] hover:bg-[#536AFF0D] hover:text-[#3739EC]"
+                    }`}
+                  >
+                    {item.icon}
+                    <span className="font-medium">{item.name}</span>
+                  </li>
+                </Link>
+              </div>
             ))}
           </ul>
         </div>

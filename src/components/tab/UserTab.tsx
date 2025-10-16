@@ -1,14 +1,11 @@
 import { IoIosPaper } from "react-icons/io";
-import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
 import { BsThreeDots } from "react-icons/bs";
 import { Button } from "../ui/button";
-import { FaSearch } from "react-icons/fa";
 import { IoMdAdd } from "react-icons/io";
 import {
   Select,
   SelectContent,
   SelectGroup,
-  SelectItem,
   SelectLabel,
   SelectTrigger,
   SelectValue,

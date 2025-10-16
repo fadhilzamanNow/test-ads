@@ -6,6 +6,9 @@ import HomeTab from "@/components/tab/HomeTab";
 import ChartTab from "@/components/tab/ChartTab";
 import HistoryTab from "@/components/tab/HistoryTab";
 import InventoryTab from "@/components/tab/InventoryTab";
+import CaseTab from "@/components/tab/CaseTab";
+import TrashTab from "@/components/tab/TrashTab";
+import SettingTab from "@/components/tab/SettingTab";
 
 export const Route = createFileRoute("/dashboard/$menu")({
   component: RouteComponent,
@@ -37,6 +40,12 @@ function RouteComponent() {
         return <InventoryTab />;
       case "chart":
         return <ChartTab />;
+      case "case":
+        return <CaseTab />;
+      case "trash":
+        return <TrashTab />;
+      case "setting":
+        return <SettingTab />;
       default:
         return (
           <div className="bg-white flex justify-center items-center h-full p-6">
