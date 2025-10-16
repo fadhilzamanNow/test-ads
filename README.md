@@ -12,6 +12,16 @@
 - Shadcn
 - TailwindCSS
 
+## features
+- Slice Login, Register, DashboardUser (all based on figma)
+- consume API (all based on figma)
+- implement client sort on the table (by clicking the table header)
+- pagination
+- responsive sidebar
+
+
+## change
+- Add phoneNumber input on /register (since the register api need to send phoneNumber
 
 ## To run this project, you may 
 ### run directly to the deployed project on vercel
