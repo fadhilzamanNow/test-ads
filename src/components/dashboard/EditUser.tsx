@@ -16,8 +16,14 @@ import { Button } from "../ui/button";
 import { useUserById } from "@/hooks/useUserById";
 import { useUpdateUser } from "@/hooks/useUpdateUser";
 import { toast } from "sonner";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Skeleton } from "../ui/skeleton";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "../ui/input-group";
+import { Eye, EyeOff } from "lucide-react";
 
 interface EditModalProps {
   open: boolean;
@@ -26,7 +32,11 @@ interface EditModalProps {
 }
 
 const editUserSchema = registerSchema.omit({ confirm_password: true }).extend({
-  password: z.string().min(8).optional().or(z.literal("")),
+  password: z
+    .string()
+    .min(1, { message: "Password masih kosong" })
+    .optional()
+    .or(z.literal("")),
 });
 
 type editUserSchema = z.infer<typeof editUserSchema>;
@@ -37,6 +47,7 @@ export default function EditUser({ open, onClose, userId }: EditModalProps) {
     !!userId && open,
   );
   const { mutate: updateUser, isPending } = useUpdateUser();
+  const [isPassOpen, setIsPassOpen] = useState(false);
 
   const {
     register,
@@ -132,7 +143,19 @@ export default function EditUser({ open, onClose, userId }: EditModalProps) {
                 </FieldSet>
                 <FieldSet className="gap-2 flex flex-col">
                   <Label className="">Password</Label>
-                  <Input {...register("password")} />
+                  <InputGroup>
+                    <InputGroupInput
+                      {...register("password")}
+                      type={isPassOpen ? "text" : "password"}
+                    />
+                    <InputGroupAddon
+                      align={"inline-end"}
+                      className="cursor-pointer"
+                      onClick={() => setIsPassOpen((prev) => !prev)}
+                    >
+                      {isPassOpen ? <EyeOff /> : <Eye />}
+                    </InputGroupAddon>
+                  </InputGroup>
                   {errors.password && (
                     <p className="text-red-500 text-xs">
                       {errors.password.message}

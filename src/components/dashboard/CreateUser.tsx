@@ -15,6 +15,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 import { useCreateUser } from "@/hooks/useCreateUser";
 import { toast } from "sonner";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "../ui/input-group";
+import { Eye, EyeOff } from "lucide-react";
+import { useState } from "react";
+
 interface CreateUserProps {
   open: boolean;
   onClose: (state: boolean) => void;
@@ -22,6 +30,7 @@ interface CreateUserProps {
 
 export default function CreateUser({ open, onClose }: CreateUserProps) {
   const { mutate: createUser, isPending } = useCreateUser();
+  const [isPassOpen, setIsPassOpen] = useState(false);
 
   const {
     register,
@@ -88,7 +97,19 @@ export default function CreateUser({ open, onClose }: CreateUserProps) {
               </FieldSet>
               <FieldSet className="gap-2 flex flex-col">
                 <Label className="">Password</Label>
-                <Input {...register("password")} />
+                <InputGroup>
+                  <InputGroupInput
+                    {...register("password")}
+                    type={isPassOpen ? "text" : "password"}
+                  />
+                  <InputGroupAddon
+                    align={"inline-end"}
+                    className="cursor-pointer"
+                    onClick={() => setIsPassOpen((prev) => !prev)}
+                  >
+                    {isPassOpen ? <EyeOff /> : <Eye />}
+                  </InputGroupAddon>
+                </InputGroup>
                 {errors.password && (
                   <p className="text-red-500 text-xs">
                     {errors.password.message}

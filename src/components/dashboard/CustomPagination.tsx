@@ -69,7 +69,11 @@ export default function CustomPagination({
       <Pagination>
         <PaginationContent>
           <PaginationItem>
-            <PaginationPrevious2 href="#" onClick={handle2Prev} />
+            <PaginationPrevious2
+              href="#"
+              onClick={handle2Prev}
+              className={`${page > 2 ? "cursor-pointer" : "cursor-not-allowed"}`}
+            />
           </PaginationItem>
           <PaginationItem>
             <PaginationPrevious
@@ -96,7 +100,11 @@ export default function CustomPagination({
             />
           </PaginationItem>
           <PaginationItem>
-            <PaginationNext2 href="#" onClick={handle2Next} />
+            <PaginationNext2
+              href="#"
+              onClick={handle2Next}
+              className={`${page <= totalPage - 2 ? "cursor-pointer" : "cursor-not-allowed"}`}
+            />
           </PaginationItem>
         </PaginationContent>
       </Pagination>

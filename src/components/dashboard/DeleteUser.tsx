@@ -36,7 +36,7 @@ export default function DeleteUser({ open, onClose, userId }: DeleteUserProps) {
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="w-100">
+      <DialogContent className="w-100 min-h-[237px]">
         <DialogHeader>
           <DialogTitle className="flex gap-2 items-center">
             <div className=" bg-[#FEE4E2] rounded-full border-8 border-[#FEF3F2] size-12 flex justify-center items-center">
@@ -45,7 +45,7 @@ export default function DeleteUser({ open, onClose, userId }: DeleteUserProps) {
           </DialogTitle>
           <DialogTitle>Delete User</DialogTitle>
         </DialogHeader>
-        <DialogDescription className="text-sm ">
+        <DialogDescription className="text-sm min-h-20 md:min-h-10">
           Are you sure you want to delete this user? This action cannot be
           undone.
         </DialogDescription>

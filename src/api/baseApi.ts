@@ -1,10 +1,9 @@
 import axios from "axios";
 
 export const baseApi = axios.create({
-  baseURL: "http://93.127.185.148:8888/api/v1",
+  baseURL: import.meta.env.VITE_BACKEND_URL,
 });
 
-// Add request interceptor to attach Bearer token
 baseApi.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("authToken");

@@ -146,6 +146,7 @@ export default function UserTab() {
             <InputGroupInput
               placeholder="Search user"
               onChange={handleSearchChange}
+              className="!rounded-l-none !border-l-0  !rounded-r-md"
             />
           </InputGroup>
           <Button className="w-39 px-4" onClick={() => handleCreate()}>

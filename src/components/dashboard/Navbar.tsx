@@ -67,7 +67,10 @@ export default function Navbar() {
                 <Kbd>S</Kbd>
               </KbdGroup>
             </InputGroupAddon>
-            <InputGroupInput placeholder="Search something" />
+            <InputGroupInput
+              placeholder="Search something"
+              className="!rounded-l-none  !border-l-none border-l-0"
+            />
           </InputGroup>
           <DropdownMenu>
             <DropdownMenuTrigger>
